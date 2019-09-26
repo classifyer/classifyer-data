@@ -7,4 +7,4 @@ Please read the [contribution guidelines](./CONTRIBUTING.md) to familiarize your
 # Contributors
 
 The data in this repository is the result of the following contributors' hard work and thoughtfulness for sharing it with others:
-  1. Contributor 1
+  1. [CEDAR Project](https://github.com/CEDAR-project) (DOI: [10.17026/dans-zms-h2s6](https://doi.org/10.17026/dans-zms-h2s6))
