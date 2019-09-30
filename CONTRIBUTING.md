@@ -22,7 +22,7 @@ If you want to add mappings for a new classification system, please follow these
   3. Following the description template, **write a thorough description** for the classification system in English (Markdown is supported)
   4. **Add your mappings** in the `mappings` directory in lowercase following this format: `name_lang.csv` (the language abbreviation should follow the [ISO 639-1 standard](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes))
   5. Make sure you **use UTF-8** for the mappings file's encoding
-  6. At minimum, **provide the following columns**:
+  6. At minimum, **provide the following columns**:  
   | literal | code | standard | contributor |
   |---------|------|----------|-------------|
   | The mapping literal | The classification code | The standard term which the literal is mapped to (defined by the classification) | Your organization/own name |
