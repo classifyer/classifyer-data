@@ -62,20 +62,12 @@ csv()
   // Read each mapping
   for ( const mapping of mappings ) {
 
-    console.log('Reading mapping:', mapping.literal);
-
     const matches = _.filter(translation, { source: mapping.code });
-
-    console.log('Found', matches.length, 'matches');
 
     // Generate final mappings based on matches
     for ( const match of matches ) {
 
-      console.log('Reading match', match.source, 'to target', match.target);
-
       const classifications = _.filter(classification, { code: match.target });
-
-      console.log('Found', classifications.length, 'classifications');
 
       for ( const c of classifications ) {
 
@@ -96,8 +88,6 @@ csv()
           m[key] = c[key];
 
         }
-
-        console.log('Built final mapping', m);
 
         finalMappings.push(m);
 
