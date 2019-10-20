@@ -1,0 +1,135 @@
+literal,code,standard,contributor,licr class
+OTHER,9000,OTHER,ashkpour_clariah,null
+Free Thinker,9001,Free Thinker,ashkpour_clariah,9000
+Non Sectarian,9002,Non Sectarian,ashkpour_clariah,9000
+Truth Seeker,9003,Truth Seeker,ashkpour_clariah,9000
+Heathen,9004,Heathen,ashkpour_clariah,9000
+Paganism,9005,Paganism,ashkpour_clariah,9000
+Infidel,9006,Infidel,ashkpour_clariah,9000
+Stony,9007,Stony,ashkpour_clariah,9000
+Secularist,9008,Secularist,ashkpour_clariah,9000
+Idealist,9009,Idealist,ashkpour_clariah,9000
+Socialist,9010,Socialist,ashkpour_clariah,9000
+Agnostic,9011,Agnostic,ashkpour_clariah,9000
+Zoroastrianism,9012,Zoroastrianism,ashkpour_clariah,9000
+Rastafarian,9013,Rastafarian,ashkpour_clariah,9000
+Bahai,9014,Bahai,ashkpour_clariah,9000
+Indigenous,9015,Indigenous,ashkpour_clariah,9000
+Atheist,9016,Atheist,ashkpour_clariah,9000
+Nonbeliever,9017,Nonbeliever,ashkpour_clariah,9000
+No Religion,9018,None/No Religion,ashkpour_clariah,9000
+Pastafarianism,9019,Pastafarianism,ashkpour_clariah,9000
+Jediism,9020,Jediism,ashkpour_clariah,9000
+Mysticism and Occult,9021,Mysticism and Occult,ashkpour_clariah,9000
+EAST ASIAN,1000,EAST ASIAN,ashkpour_clariah,null
+Taoism,1100,Taoism,ashkpour_clariah,1000
+Confucianism,1200,Confucianism,ashkpour_clariah,1000
+Shinto,1300,Shinto,ashkpour_clariah,1000
+Other,1400,Other,ashkpour_clariah,1000
+INDIAN,2000,INDIAN,ashkpour_clariah,null
+Hinduism,2100,Hinduism,ashkpour_clariah,2000
+Buddhism,2200,Buddhism,ashkpour_clariah,2000
+Sikhism,2300,Sikhism,ashkpour_clariah,2000
+Jainism,2400,Jainism,ashkpour_clariah,2000
+Bhakti movement,2500,Bhakti movement,ashkpour_clariah,2000
+Din-e Ilahi,2600,Din-e Ilahi,ashkpour_clariah,2000
+Meivazhi,2700,Meivazhi,ashkpour_clariah,2000
+Other Indian,2800,Other Indian,ashkpour_clariah,2000
+ISLAM,3000,ISLAM,ashkpour_clariah,null
+Sunni,3100,Sunni,ashkpour_clariah,3000
+Shia,3200,Shia,ashkpour_clariah,3000
+Alawi,3210,Alawi,ashkpour_clariah,3200
+Sufism,3300,Sufism,ashkpour_clariah,3000
+Layenne,3310,Layenne,ashkpour_clariah,3300
+Mouride,3320,Mouride,ashkpour_clariah,3300
+Tidjane,3330,Tidjane,ashkpour_clariah,3300
+Ahmadis,3400,Ahmadis,ashkpour_clariah,3000
+Khadrya,3500,Khadrya,ashkpour_clariah,3000
+Ibadi,3510,Ibadi,ashkpour_clariah,3500
+Quranism,3600,Quranism,ashkpour_clariah,3000
+Black Muslim movements,3700,Black Muslim movements,ashkpour_clariah,3000
+Other Muslim,3800,Other Muslim,ashkpour_clariah,3000
+JUDAISM,4000,JUDAISM,ashkpour_clariah,null
+Rabbinic Judaism,4100,Rabbinic Judaism,ashkpour_clariah,4000
+Sephardic Judaism,4110,Sephardic Judaism,ashkpour_clariah,4100
+Orthodox Judaism,4120,Orthodox Judaism,ashkpour_clariah,4100
+Ultra Orthodox Judaism,4130,Ultra Orthodox Judaism,ashkpour_clariah,4100
+Hasidic Judaism,4131,Hasidic Judaism,ashkpour_clariah,4120
+Reformed Judaism,4200,Reformed Judaism,ashkpour_clariah,4000
+Conservative Judaism,4300,Conservative Judaism,ashkpour_clariah,4000
+Karaite Judaism,4400,Karaite Judaism,ashkpour_clariah,4000
+Haymanot,4500,Haymanot,ashkpour_clariah,4000
+Reconstructionist Judaism,4600,Reconstructionist Judaism,ashkpour_clariah,4000
+Messianic Judaism,4700,Messianic Judaism,ashkpour_clariah,4000
+Anglo Israel,4800,Anglo Israel,ashkpour_clariah,4000
+Other Jewish,4900,Other Jewish,ashkpour_clariah,4000
+Israelite,4910,Israelite,ashkpour_clariah,4900
+Zionism,4920,Zionism,ashkpour_clariah,4900
+CHRISTIANITY,5000,CHRISTIANITY,ashkpour_clariah,null
+Catholic,5100,Catholic,ashkpour_clariah,5000
+Old Catholic,5110,Old Catholic,ashkpour_clariah,5100
+Greek Catholic,5120,Greek Catholic,ashkpour_clariah,5100
+Polish Catholic,5130,Polish Catholic,ashkpour_clariah,5100
+Papist,5140,Papist,ashkpour_clariah,5100
+Catholic Apostolic,5150,Catholic Apostolic,ashkpour_clariah,5100
+Other Catholic,5160,Other Catholic,ashkpour_clariah,5100
+Orthodox,5200,Orthodox,ashkpour_clariah,5000
+Eastern Orthodox,5210,Eastern Orthodox,ashkpour_clariah,5200
+Oriental Orthodox,5220,Oriental Orthodox,ashkpour_clariah,5200
+Other Orthodox Churches,5230,Other Orthodox Churches,ashkpour_clariah,5200
+Protestant,5300,Protestant,ashkpour_clariah,5000
+Lutheran,5310,Lutheran,ashkpour_clariah,5300
+German Lutheran,5311,German Lutheran,ashkpour_clariah,5310
+United Lutheran,5312,United Lutheran,ashkpour_clariah,5310
+Evangelical Lutheran,5313,Evangelical Lutheran,ashkpour_clariah,5310
+Modern Prostantism,5330,Modern Prostantism,ashkpour_clariah,5300
+Pentacostal,5331,Pentacostal,ashkpour_clariah,5330
+Adventist / Seventh-day adventist,5332,Adventist / Seventh-day adventist,ashkpour_clariah,5330
+English Apostolic,5333,English Apostolic,ashkpour_clariah,5330
+Assembly of God,5334,Assembly of God,ashkpour_clariah,5330
+New Apostolic,5335,New Apostolic,ashkpour_clariah,5330
+Quakers,5336,Quakers,ashkpour_clariah,5330
+Methodist,5360,Methodist,ashkpour_clariah,5300
+Congregational Methodist,5361,Congregational Methodist,ashkpour_clariah,5360
+Primitive Methodist,5362,Primitive Methodist,ashkpour_clariah,5360
+Wesleyan Methodist,5363,Wesleyan Methodist,ashkpour_clariah,5360
+Episcopal Methodist,5364,Episcopal Methodist,ashkpour_clariah,5360
+Evangelical Methodist,5365,Evangelical Methodist,ashkpour_clariah,5360
+Free Methodist,5366,Free Methodist,ashkpour_clariah,5360
+German Methodist,5367,German Methodist,ashkpour_clariah,5360
+African Methodist,5368,African Methodist,ashkpour_clariah,5360
+Church of the Nazarene,5369,Church of the Nazarene,ashkpour_clariah,5360
+Baptist,5370,Baptist,ashkpour_clariah,5300
+Christian Baptist,5371,Christian Baptist,ashkpour_clariah,5370
+Primitive Baptist,5372,Primitive Baptist,ashkpour_clariah,5370
+Reformed Baptist,5373,Reformed Baptist,ashkpour_clariah,5370
+Seventh Day Baptist,5374,Seventh Day Baptist,ashkpour_clariah,5370
+Free Baptist,5375,Free Baptist,ashkpour_clariah,5370
+Christadelphian,5376,Christadelphian,ashkpour_clariah,5370
+Disciple of Christ,5377,Disciple of Christ,ashkpour_clariah,5370
+Other Baptist,5378,Other Baptist,ashkpour_clariah,5370
+Calvinist,5380,Calvinist,ashkpour_clariah,5300
+Congregational,5381,Congregational,ashkpour_clariah,5380
+Dutch Reformed,5382,Dutch Reformed,ashkpour_clariah,5380
+German Reformed Church,5383,German Reformed Church,ashkpour_clariah,5380
+Church of Scotland,5384,Church of Scotland,ashkpour_clariah,5380
+Presbyterian,5385,Presbyterian,ashkpour_clariah,5380
+Reformed Presbyterian,5386,Reformed Presbyterian,ashkpour_clariah,5380
+Canadian Presbyterian,5387,Canadian Presbyterian,ashkpour_clariah,5380
+Knox Presbyterian,5388,Knox Presbyterian,ashkpour_clariah,5380
+Presbyterian Episcopal,5389,Presbyterian Episcopal,ashkpour_clariah,5380
+Anglican,5400,Anglican,ashkpour_clariah,5000
+Anglican Church,5410,Anglican Church,ashkpour_clariah,5400
+Church of Ireland,5420,Church of Ireland,ashkpour_clariah,5400
+Church of England,5430,Church of England,ashkpour_clariah,5400
+Episcopal,5440,Episcopal,ashkpour_clariah,5400
+Reformed Episcopal,5450,Reformed Episcopal,ashkpour_clariah,5400
+English Apostolic,5460,English Apostolic,ashkpour_clariah,5400
+Nontrinitarian,5500,Nontrinitarian,ashkpour_clariah,5000
+Jehovah's Witnesses,5510,Jehovah's Witnesses,ashkpour_clariah,5500
+Latter Day Saints (Mormon),5520,Latter Day Saints (Mormon),ashkpour_clariah,5500
+Church of Christian Scientist,5530,Church of Christian Scientist,ashkpour_clariah,5500
+Iglesia ni Cristo,5540,Iglesia ni Cristo,ashkpour_clariah,5500
+Other Christian,5600,Other Christian,ashkpour_clariah,5000
+Other Netherlands,5610,Other Netherlands,ashkpour_clariah,5600
+Other Christian Brazil,5620,Other Christian Brazil,ashkpour_clariah,5600
