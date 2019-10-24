@@ -26,7 +26,7 @@ csv()
 
   for ( const row of json ) {
 
-    const key = row.literal;
+    const key = row.literal.trim().toLowerCase();
 
     delete row.literal;
 
