@@ -9,9 +9,9 @@
  * @param COMMIT_ID The commit ID where the file was generated
  * @param CATEGORY The category in lowercase
  * @param NAME The classification name
- * @param LANGUAGE The mappings language
+ * @param LANGUAGE The mappings language (two letters standard)
  *
- * EXAMPLE: ts-node ./scripts/deploy.ts ./dist/amco_nl.json.gz ./descriptions/amco.md 43ef049090f5c075c479eb89f0f1cc4d10ff590c locations amco dutch
+ * EXAMPLE: ts-node ./scripts/deploy.ts ./dist/amco_nl.json.gz ./descriptions/amco.md 43ef049090f5c075c479eb89f0f1cc4d10ff590c locations amco nl
  */
 
 import admin from 'firebase-admin';
