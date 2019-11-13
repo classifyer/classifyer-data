@@ -1855,7 +1855,7 @@ aduard.,2,Aduard,cedarproject,Groningen
 rietveld (geene kom),1160,Rietveld,cedarproject,Zuid-Holland
 valkenswaard.,858,Valkenswaard,cedarproject,Noord-Brabant
 lange-ruigeweide,1101,Lange Ruige Weide,cedarproject,Zuid-Holland
-enschedÃ©,153,Enschede,cedarproject,Overijssel
+enschedé,153,Enschede,cedarproject,Overijssel
 zontelande,720,Valkenisse [Walcheren],cedarproject,Zeeland
 zontelande,1237,Zoutelande,cedarproject,Zeeland
 heukelom,533,Heukelum,cedarproject,Zuid-Holland
@@ -2576,7 +2576,7 @@ sevenum.,964,Sevenum,cedarproject,Limburg
 horssen.,254,Horssen,cedarproject,Gelderland
 overzand,698,Ovezande,cedarproject,Zeeland
 beusichem.,210,Beusichem,cedarproject,Gelderland
-ohÃ© en laak.,953,Ohé en Laak,cedarproject,Limburg
+ohé en laak.,953,Ohé en Laak,cedarproject,Limburg
 klaaswaal.,539,Klaaswaal,cedarproject,Zuid-Holland
 beuningen (geene kom),209,Beuningen,cedarproject,Gelderland
 hontenisse.,675,Hontenisse,cedarproject,Zeeland
@@ -2730,7 +2730,8 @@ ameland.,60,Ameland,cedarproject,Friesland
 vlissingen.,718,Vlissingen,cedarproject,Zeeland
 doesburg.,221,Doesburg,cedarproject,Gelderland
 delden (stad).,142,Ambt Delden,cedarproject,Overijssel
-Ã†ngwirden,1006,Ængwirden,cedarproject,Friesland
+ængwirden,1006,Ængwirden,cedarproject,Friesland
+aengwirden,1006,Ængwirden,cedarproject,Friesland
 nieuwerkerk aan den ijssel.,567,Nieuwerkerk aan den IJssel,cedarproject,Zuid-Holland
 nieuwerkerk aan den ijssel.,1892,Zuidplas,cedarproject,Zuid-Holland
 bocholtz.,895,Bocholtz,cedarproject,Limburg
@@ -3501,7 +3502,7 @@ ALMKERK,740,Almkerk,cedarproject,Noord-Brabant
 ALPHEN EN RIEL,1723,Alphen-Chaam,cedarproject,Noord-Brabant
 ALPHEN EN RIEL,741,Alphen en Riel,cedarproject,Noord-Brabant
 AMBY,883,Amby,cedarproject,Limburg
-"Kom, Marechauss?©e kazerne",883,Amby,cedarproject,Limburg
+"Kom, Marechaussée kazerne",883,Amby,cedarproject,Limburg
 "Kom, Klooster v/h Heilig Hart",883,Amby,cedarproject,Limburg
 "Kom, Overige huizen",883,Amby,cedarproject,Limburg
 "Heidehoven, Huizen",883,Amby,cedarproject,Limburg
@@ -3533,7 +3534,7 @@ Appeltern,201,Appeltern,cedarproject,Gelderland
 "Alphen, Huizen",201,Appeltern,cedarproject,Gelderland
 Appingedam,3,Appingedam,cedarproject,Groningen
 Arcen en Velden,885,Arcen en Velden,cedarproject,Limburg
-"Arcen, Marechauss?©e kazerne",885,Arcen en Velden,cedarproject,Limburg
+"Arcen, Marechaussée kazerne",885,Arcen en Velden,cedarproject,Limburg
 "Arcen, Buiten de Kom, Huizen",885,Arcen en Velden,cedarproject,Limburg
 "Arcen, Dorp, Huizen",885,Arcen en Velden,cedarproject,Limburg
 Arcen en Velden (Vervolg),885,Arcen en Velden,cedarproject,Limburg
@@ -3556,7 +3557,7 @@ Gemeentelijk Ziekenhuis voor besmettel. ziekten,106,Assen,cedarproject,Drenthe
 "Wilhelmina-, Emma- en Hendrikkazerne",106,Assen,cedarproject,Drenthe
 Instituut Rozenburg,106,Assen,cedarproject,Drenthe
 Diaconiegesticht,106,Assen,cedarproject,Drenthe
-Marechauss?©e kazerne,106,Assen,cedarproject,Drenthe
+Marechaussée kazerne,106,Assen,cedarproject,Drenthe
 Wilhelminaziekenhuis,106,Assen,cedarproject,Drenthe
 Huis van Bewaring,106,Assen,cedarproject,Drenthe
 Zwervende bevolking,106,Assen,cedarproject,Drenthe
@@ -3724,7 +3725,7 @@ Beesd,205,Beesd,cedarproject,Gelderland
 Beersel,889,Beesel,cedarproject,Limburg
 "Kom, Klooster der Goddelijke Voorzienigheid.",889,Beesel,cedarproject,Limburg
 "Kom, Overige huizen",889,Beesel,cedarproject,Limburg
-"Reuver, Marechauss?©e kazerne",889,Beesel,cedarproject,Limburg
+"Reuver, Marechaussée kazerne",889,Beesel,cedarproject,Limburg
 "Reuver, Gesticht v.h. Heilige Hart",889,Beesel,cedarproject,Limburg
 "Reuver, Overige huizen",889,Beesel,cedarproject,Limburg
 "Bakheide, Huizen",889,Beesel,cedarproject,Limburg
@@ -3773,8 +3774,8 @@ Bergh,1955,Montferland,cedarproject,Gelderland
 "s Heerenbergh, St Aloysiusgest.",1955,Montferland,cedarproject,Gelderland
 "s Heerenbergh, St. Gertrudisgasthuis",207,Bergh,cedarproject,Gelderland
 "s Heerenbergh, St. Gertrudisgasthuis",1955,Montferland,cedarproject,Gelderland
-"s Heerenbergh, Marechauss?©e kazerne",207,Bergh,cedarproject,Gelderland
-"s Heerenbergh, Marechauss?©e kazerne",1955,Montferland,cedarproject,Gelderland
+"s Heerenbergh, Marechaussée kazerne",207,Bergh,cedarproject,Gelderland
+"s Heerenbergh, Marechaussée kazerne",1955,Montferland,cedarproject,Gelderland
 "s Heerenbergh, Overige huizen",207,Bergh,cedarproject,Gelderland
 "s Heerenbergh, Overige huizen",1955,Montferland,cedarproject,Gelderland
 "Stokkum, Huizen",207,Bergh,cedarproject,Gelderland
@@ -5083,7 +5084,7 @@ Hengelo (Geld.),164,Hengelo [Ov],cedarproject,Overijssel
 "Varssel, huizen",164,Hengelo [Ov],cedarproject,Overijssel
 Hengelo (Overijssel)..,164,Hengelo [Ov],cedarproject,Overijssel
 St. Anthoniusgesticht,164,Hengelo [Ov],cedarproject,Overijssel
-Marechaus?©e kazerne,164,Hengelo [Ov],cedarproject,Overijssel
+Marechausée kazerne,164,Hengelo [Ov],cedarproject,Overijssel
 Het Ziekenhuis,164,Hengelo [Ov],cedarproject,Overijssel
 St. Gerardus Majella ziekenhuis,164,Hengelo [Ov],cedarproject,Overijssel
 Hengstdijk,1077,Hengstdijk,cedarproject,Zeeland
@@ -5143,7 +5144,7 @@ Inrichting van Onderwijs,796,s-Hertogenbosch,cedarproject,Noord-Brabant
 "Zedelijk lichaam van Vrouwen ""In Omnibus Charitas"".",796,s-Hertogenbosch,cedarproject,Noord-Brabant
 Reinier van Arkel,796,s-Hertogenbosch,cedarproject,Noord-Brabant
 Strafgevangenis voor mannen,796,s-Hertogenbosch,cedarproject,Noord-Brabant
-Marechaus?©e kazerne,796,s-Hertogenbosch,cedarproject,Noord-Brabant
+Marechausée kazerne,796,s-Hertogenbosch,cedarproject,Noord-Brabant
 St. Jacobs kazerne (groot Tuighuis),796,s-Hertogenbosch,cedarproject,Noord-Brabant
 Citadel kazerne,796,s-Hertogenbosch,cedarproject,Noord-Brabant
 Berewout kazerne,796,s-Hertogenbosch,cedarproject,Noord-Brabant
@@ -5191,7 +5192,7 @@ Hooge en Lage Zwaluwen,802,Hooge en Lage Zwaluwe,cedarproject,Noord-Brabant
 "Groenendijk, R.K. Liefdesgesticht der v/h heilige Hart",802,Hooge en Lage Zwaluwe,cedarproject,Noord-Brabant
 "Groenendijk, Overige huizen",802,Hooge en Lage Zwaluwe,cedarproject,Noord-Brabant
 "Lage Zwaluwe, Huizen",802,Hooge en Lage Zwaluwe,cedarproject,Noord-Brabant
-"Moerdijk, Marechauss?©e kazerne",802,Hooge en Lage Zwaluwe,cedarproject,Noord-Brabant
+"Moerdijk, Marechaussée kazerne",802,Hooge en Lage Zwaluwe,cedarproject,Noord-Brabant
 "Moerdijk, Het Heilige Hart van Jezus",802,Hooge en Lage Zwaluwe,cedarproject,Noord-Brabant
 "Moerdijk, Overige huizen",802,Hooge en Lage Zwaluwe,cedarproject,Noord-Brabant
 "Hoogeloon, c.a.",1080,Herpt,cedarproject,Noord-Brabant
@@ -6467,7 +6468,7 @@ Sleen,130,Sleen,cedarproject,Drenthe
 Slenaken,969,Slenaken,cedarproject,Limburg
 "Hoogcruts, Dominicanessenklooster ""Hoogcruts"".",969,Slenaken,cedarproject,Limburg
 "Hoogcruts, Overige Huizen",969,Slenaken,cedarproject,Limburg
-"Slenaken, Marechaus?©e kazerne",969,Slenaken,cedarproject,Limburg
+"Slenaken, Marechausée kazerne",969,Slenaken,cedarproject,Limburg
 "Slenaken, Overige huizen",969,Slenaken,cedarproject,Limburg
 "Beutmaken, Huizen",969,Slenaken,cedarproject,Limburg
 "Schilberg, Huizen",969,Slenaken,cedarproject,Limburg
@@ -6531,7 +6532,7 @@ Slochteren (Vervolg).,40,Slochteren,cedarproject,Groningen
 Arken,40,Slochteren,cedarproject,Groningen
 Sloten (N.-H.),89,Sloten [Fr],cedarproject,Friesland
 Sloten (Friesland),89,Sloten [Fr],cedarproject,Friesland
-"Sloten, Marechauss?©e kazerne",89,Sloten [Fr],cedarproject,Friesland
+"Sloten, Marechaussée kazerne",89,Sloten [Fr],cedarproject,Friesland
 "Sloten, Overige huizen",89,Sloten [Fr],cedarproject,Friesland
 Sluis,713,Sluis [1],cedarproject,Zeeland
 Sluis,1714,Sluis [2],cedarproject,Zeeland
@@ -7445,7 +7446,7 @@ Zwammerdam,1244,Zwammerdam,cedarproject,Zuid-Holland
 Zwartewaal,641,Zwartewaal,cedarproject,Zuid-Holland
 Zwartsluis.,192,Zwartsluis,cedarproject,Overijssel
 Zweeloo.,138,Zweeloo,cedarproject,Drenthe
-"Zweeloo, Marechauss?©e kazerne.",138,Zweeloo,cedarproject,Drenthe
+"Zweeloo, Marechaussée kazerne.",138,Zweeloo,cedarproject,Drenthe
 "Zweeloo, Overige huizen",138,Zweeloo,cedarproject,Drenthe
 "Benneveld, Huizen",138,Zweeloo,cedarproject,Drenthe
 "Aalden, Huizen",138,Zweeloo,cedarproject,Drenthe
@@ -7458,7 +7459,7 @@ Zwolle,193,Zwolle,cedarproject,Overijssel
 Het vrouwenhuis,193,Zwolle,cedarproject,Overijssel
 Fraterstichting,193,Zwolle,cedarproject,Overijssel
 Kazerne,193,Zwolle,cedarproject,Overijssel
-Marechauss?©e kazerne.,193,Zwolle,cedarproject,Overijssel
+Marechaussée kazerne.,193,Zwolle,cedarproject,Overijssel
 Weeshuis der N. H. Gemeente.,193,Zwolle,cedarproject,Overijssel
 Binnengasthuis,193,Zwolle,cedarproject,Overijssel
 Liefdegesticht,193,Zwolle,cedarproject,Overijssel
@@ -7494,7 +7495,6 @@ Zwollerkerspel,1245,Zwollerkerspel,cedarproject,Overijssel
 "Laag-Zuthem, Huizen",1245,Zwollerkerspel,cedarproject,Overijssel
 Zwollerkerspel (vervolg.),1245,Zwollerkerspel,cedarproject,Overijssel
 "Ittersum, Huizen",1245,Zwollerkerspel,cedarproject,Overijssel
-"Zalm?©, Huizen",1245,Zwollerkerspel,cedarproject,Overijssel
 "Wythmen, Huizen",1245,Zwollerkerspel,cedarproject,Overijssel
 "Herfte, Huizen",1245,Zwollerkerspel,cedarproject,Overijssel
 "Berkum Veldhoek, Huizen",1245,Zwollerkerspel,cedarproject,Overijssel
