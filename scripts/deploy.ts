@@ -1,78 +1,71 @@
 /**
+ * ***************************
+ * *** RUN: npm run deploy ***
+ * ***************************
  * This script deploys a mapping file to the Firebase Storage and Firestore.
- * Make sure to store your service account certificate at /firebase-cert.json
+ * Make sure to store your service account certificate at "/firebase-cert.json".
  *
- * SYNTAX: ts-node ./scripts/deploy.ts MAPPING DESCRIPTION COMMIT_ID CATEGORY NAME LANGUAGE
- *
- * @param MAPPING The path to the mapping file to deploy
- * @param DESCRIPTION The path to the description file
- * @param COMMIT_ID The commit ID where the file was generated
- * @param CATEGORY The category in lowercase
- * @param NAME The classification name
- * @param LANGUAGE The mappings language (two letters standard)
- *
- * EXAMPLE: ts-node ./scripts/deploy.ts ./dist/amco_nl.json.gz ./descriptions/amco.md 43ef049090f5c075c479eb89f0f1cc4d10ff590c locations amco nl
+ * @param mappingFilename The path to the mapping file to deploy
+ * @param descriptionFilename The path to the description file
+ * @param commitId The commit ID where the file was generated
+ * @param category The category in lowercase
+ * @param classificationName The classification name
+ * @param classificationLanguage The mappings language (two letters standard)
  */
 
 import admin from 'firebase-admin';
 import cert from '../firebase-cert.json';
 import chalk from 'chalk';
 import path from 'path';
-import readline from 'readline';
 import showdown from 'showdown';
 import fs from 'fs';
-
-const mappingFilename = path.resolve(__dirname, '..', process.argv[2]);
-const descriptionFilename = path.resolve(__dirname, '..', process.argv[3]);
-const commitId = process.argv[4].trim();
-const category = process.argv[5].trim().toLowerCase();
-const classificationName = process.argv[6].trim().toLowerCase();
-const language = process.argv[7].trim().toLowerCase();
+import ask from './ask';
 
 let fileId: string = '', categoryId: string = '';
 
-function promptInput(): Promise<void> {
-
-  return new Promise((resolve, reject) => {
-
-    console.log('');
-    console.log(chalk.bold.yellowBright('MAPPING:'), chalk.bold.blueBright(mappingFilename));
-    console.log(chalk.bold.yellowBright('DESCRIPTION:'), chalk.bold.blueBright(descriptionFilename));
-    console.log(chalk.bold.yellowBright('COMMIT_ID:'), chalk.bold.greenBright(commitId));
-    console.log(chalk.bold.yellowBright('CATEGORY:'), chalk.bold.greenBright(category));
-    console.log(chalk.bold.yellowBright('NAME:'), chalk.bold.greenBright(classificationName));
-    console.log(chalk.bold.yellowBright('LANGUAGE:'), chalk.bold.greenBright(language));
-    console.log('');
-
-    let rl = readline.createInterface(process.stdin, process.stdout);
-
-    rl.setPrompt('Do you want to proceed with the deploy? (y/n) ');
-    rl.prompt();
-    rl
-    .on('line', line => {
-
-      if ( line.trim().toLowerCase() === 'y' ) return resolve();
-      if ( line.trim().toLowerCase() === 'n' ) return rl.close();
-
-      rl.prompt();
-
-    })
-    .on('close', reject);
-
-  });
-
-}
-
 (async () => {
 
-  try {
+  // Relative path validator
+  const pathExists = (filename: string) => {
 
-    await promptInput();
+    if ( ! filename || ! fs.existsSync(path.resolve(__dirname, '..', filename)) )
+      return new Error('File not found! Please enter a valid path relative to the project root.');
 
-  }
-  catch (error) {
+    return true;
 
-    process.exit(0);
+  };
+
+  // Yes/no answer validator
+  const yesNo = (answer: string) => {
+
+    return ['y', 'yes', 'n', 'no'].includes(answer.trim().toLowerCase());
+
+  };
+
+  // Collect the input parameters
+  const mappingFilename = path.resolve(__dirname, '..', await ask('Built mappings filename (relative to root):', true, pathExists));
+  const descriptionFilename = path.resolve(__dirname, '..', await ask('Description filename (relative to root):', true, pathExists));
+  const commitId = (await ask('Commit ID:', true)).trim();
+  const category = (await ask('Category:', true)).trim().toLowerCase();
+  const classificationName = (await ask('Classification name:', true)).trim().toLowerCase();
+  const classificationLanguage = (await ask('Classification language:', true)).trim().toLowerCase();
+
+  console.log('');
+
+  // Double check the input
+  console.log(chalk.bold.greenBright('Mappings:               '), mappingFilename);
+  console.log(chalk.bold.greenBright('Description:            '), descriptionFilename);
+  console.log(chalk.bold.greenBright('Commit ID:              '), commitId);
+  console.log(chalk.bold.greenBright('Category:               '), category);
+  console.log(chalk.bold.greenBright('Classification Name:    '), classificationName);
+  console.log(chalk.bold.greenBright('Classification Language:'), classificationLanguage);
+
+  console.log('');
+
+  if ( ['no', 'n'].includes((await ask('Are you sure you want to deploy? (y/n)', true, yesNo)).trim().toLowerCase()) ) {
+
+    console.log(chalk.bold.red('Aborted!'));
+    return;
 
   }
 
@@ -83,15 +76,11 @@ function promptInput(): Promise<void> {
       storageBucket: `gs://${cert.project_id}.appspot.com`
     });
 
-    console.log(chalk.bold.magenta('Uploading the mappings file...'));
-
-    // Upload the file
-    await admin.storage().bucket().upload(mappingFilename, { gzip: true });
-
-    console.log(chalk.bold.magenta('Mappings file uploaded'));
-
     // Add/update the file document
-    const fileSnapshot = await admin.firestore().collection('files').where('filename', '==', path.basename(mappingFilename)).get();
+    let finalVersion: number;
+    let deleteOldVersion: boolean = false;
+
+    const fileSnapshot = await admin.firestore().collection('files').where('basename', '==', path.basename(mappingFilename, '.json.gz')).get();
 
     // Add file document
     if ( fileSnapshot.empty ) {
@@ -99,12 +88,13 @@ function promptInput(): Promise<void> {
       console.log(chalk.bold.magenta('Adding file document to Firestore...'));
 
       const doc = await admin.firestore().collection('files').add({
-        filename: path.basename(mappingFilename),
+        basename: path.basename(mappingFilename, '.json.gz'),
         version: 1,
         commitId: commitId
       });
 
       fileId = doc.id;
+      finalVersion = 1;
 
       console.log(chalk.bold.magenta('File document created'));
 
@@ -117,6 +107,8 @@ function promptInput(): Promise<void> {
       const doc = fileSnapshot.docs[0];
 
       fileId = doc.id;
+      finalVersion = doc.get('version') + 1;
+      deleteOldVersion = true;
 
       await doc.ref.update({
         version: doc.get('version') + 1,
@@ -126,6 +118,19 @@ function promptInput(): Promise<void> {
       console.log(chalk.bold.magenta('File document updated'));
 
     }
+
+    console.log(chalk.bold.magenta('Uploading the mappings file...'));
+
+    // Upload the file
+    await admin.storage().bucket().upload(mappingFilename, {
+      gzip: true,
+      destination: path.basename(mappingFilename, '.json.gz') + '_v' + finalVersion + '.json.gz',
+      metadata: {
+        cacheControl: 'public,max-age=31536000,immutable'
+      }
+    });
+
+    console.log(chalk.bold.magenta('Mappings file uploaded'));
 
     // Add/update the category document
     const categorySnapshot = await admin.firestore().collection('categories').where('name', '==', category).get();
@@ -185,7 +190,7 @@ function promptInput(): Promise<void> {
     // Add/update dictionary document
     const dictionarySnapshot = await admin.firestore().collection('dictionaries')
     .where('name', '==', classificationName)
-    .where('language', '==', language)
+    .where('language', '==', classificationLanguage)
     .get();
 
     // Add dictionary document
@@ -198,7 +203,7 @@ function promptInput(): Promise<void> {
         mappingFileId: fileId,
         categoryId: categoryId,
         description: renderedDescription,
-        language: language
+        language: classificationLanguage
       });
 
       console.log(chalk.bold.magenta('Dictionary document created'));
@@ -216,10 +221,21 @@ function promptInput(): Promise<void> {
         mappingFileId: fileId,
         categoryId: categoryId,
         description: renderedDescription,
-        language: language
+        language: classificationLanguage
       });
 
       console.log(chalk.bold.magenta('Dictionary document updated'));
+
+    }
+
+    // Delete the old mappings file
+    if ( deleteOldVersion ) {
+
+      console.log(chalk.bold.magenta('Deleting the old mappings file...'));
+
+      await admin.storage().bucket().file(path.basename(mappingFilename, '.json.gz') + '_v' + (finalVersion - 1) + '.json.gz').delete();
+
+      console.log(chalk.bold.magenta('Old mappings file delete'));
 
     }
 

@@ -1,127 +1,141 @@
 /**
+ * ******************************
+ * *** RUN: npm run translate ***
+ * ******************************
  * This script translates mappings from one classification to another.
  * It takes three CSV files named mappings.csv, translation.csv, and classification.csv.
  *
- * SYNTAX: ts-node ./scripts/translate.ts MAPPING TRANSLATION CLASSIFICATION DESTINATION
- *
- * @param MAPPING The path to the mapping file
- * @param TRANSLATION The path to the translation file
- * @param CLASSIFICATION The path to classification file
- * @param DESTINATION The path to the destination file
- *
- * EXAMPLE: ts-node ./scripts/translate.ts ./src/mappings.csv ./src/translation.csv ./src/classification.csv ./dist/final.csv
+ * @param mappingPath The path to the mapping file
+ * @param translationPath The path to the translation file
+ * @param classificationPath The path to classification file
+ * @param destinationPath The path to the destination file
  */
 
 import fs from 'fs';
 import path from 'path';
 import csv from 'csvtojson';
 import _ from 'lodash';
+import ask from './ask';
 
-const mappingPath = path.resolve(__dirname, '..', process.argv[2]);
-const translationPath = path.resolve(__dirname, '..', process.argv[3]);
-const classificationPath = path.resolve(__dirname, '..', process.argv[4]);
-const destinationPath = path.resolve(__dirname, '..', process.argv[5]);
+(async () => {
 
-let mappings: Mapping[];
-let translation: Translation[];
-let classification: Classification[];
-let finalMappings: FinalMapping[] = [];
-let metadataHeaders: string[] = [];
+  // Relative path validator
+  const pathExists = (filename: string) => {
 
-function renderField(value: string): string {
+    if ( ! filename || ! fs.existsSync(path.resolve(__dirname, '..', filename)) )
+      return new Error('File not found! Please enter a valid path relative to the project root.');
 
-  if ( ! value ) value = '';
-  value = value.replace(/"/g, '""');
-  if ( value.includes(',') || value.includes('"') || value.includes('\n') ) value = `"${value}"`;
+    return true;
 
-  return value;
+  };
 
-}
+  const mappingPath = path.resolve(__dirname, '..', await ask('CSV mappings filename (relative to root):', true, pathExists));
+  const translationPath = path.resolve(__dirname, '..', await ask('CSV translations filename (relative to root):', true, pathExists));
+  const classificationPath = path.resolve(__dirname, '..', await ask('CSV classification filename (relative to root):', true, pathExists));
+  const destinationPath = path.resolve(__dirname, '..', await ask('Destination filename (relative to root):', true));
 
-// Read all files as JSON
-csv()
-.fromFile(mappingPath, { encoding: 'utf8' })
-.then(content => {
+  let mappings: Mapping[];
+  let translation: Translation[];
+  let classification: Classification[];
+  let finalMappings: FinalMapping[] = [];
+  let metadataHeaders: string[] = [];
 
-  mappings = content;
+  function renderField(value: string): string {
 
-  return csv().fromFile(translationPath, { encoding: 'utf8' });
+    if ( ! value ) value = '';
+    value = value.replace(/"/g, '""');
+    if ( value.includes(',') || value.includes('"') || value.includes('\n') ) value = `"${value}"`;
 
-})
-.then(content => {
+    return value;
 
-  translation = content;
+  }
 
-  return csv().fromFile(classificationPath, { encoding: 'utf8' });
+  // Read all files as JSON
+  csv()
+  .fromFile(mappingPath, { encoding: 'utf8' })
+  .then(content => {
 
-})
-.then(content => {
+    mappings = content;
 
-  classification = <any>content;
+    return csv().fromFile(translationPath, { encoding: 'utf8' });
 
-  // Read each mapping
-  for ( const mapping of mappings ) {
+  })
+  .then(content => {
 
-    const matches = _.filter(translation, { source: mapping.code });
+    translation = content;
 
-    // Generate final mappings based on matches
-    for ( const match of matches ) {
+    return csv().fromFile(classificationPath, { encoding: 'utf8' });
 
-      const classifications = _.filter(classification, { code: match.target });
+  })
+  .then(content => {
 
-      for ( const c of classifications ) {
+    classification = <any>content;
 
-        const m = {
-          literal: mapping.literal,
-          code: c.code,
-          standard: c.standard,
-          contributor: mapping.contributor
-        };
+    // Read each mapping
+    for ( const mapping of mappings ) {
 
-        // Add classification metadata
-        const metadataKeys = _.keys(c).filter(key => ! ['standard', 'code'].includes(key));
+      const matches = _.filter(translation, { source: mapping.code });
 
-        if ( ! metadataHeaders.length ) metadataHeaders = metadataKeys;
+      // Generate final mappings based on matches
+      for ( const match of matches ) {
 
-        for ( const key of metadataKeys ) {
+        const classifications = _.filter(classification, { code: match.target });
 
-          m[key] = c[key];
+        for ( const c of classifications ) {
+
+          const m = {
+            literal: mapping.literal,
+            code: c.code,
+            standard: c.standard,
+            contributor: mapping.contributor
+          };
+
+          // Add classification metadata
+          const metadataKeys = _.keys(c).filter(key => ! ['standard', 'code'].includes(key));
+
+          if ( ! metadataHeaders.length ) metadataHeaders = metadataKeys;
+
+          for ( const key of metadataKeys ) {
+
+            m[key] = c[key];
+
+          }
+
+          finalMappings.push(m);
 
         }
-
-        finalMappings.push(m);
 
       }
 
     }
 
-  }
+    // Convert final mappings to CSV
+    const headers = ['literal', 'code', 'standard', 'contributor'].concat(metadataHeaders);
+    let csvContent: string = headers.join(',') + '\n';
 
-  // Convert final mappings to CSV
-  const headers = ['literal', 'code', 'standard', 'contributor'].concat(metadataHeaders);
-  let csvContent: string = headers.join(',') + '\n';
+    for ( const mapping of finalMappings ) {
 
-  for ( const mapping of finalMappings ) {
+      csvContent += `${renderField(mapping.literal)},${renderField(mapping.code)},${renderField(mapping.standard)},${renderField(mapping.contributor)}`;
 
-    csvContent += `${renderField(mapping.literal)},${renderField(mapping.code)},${renderField(mapping.standard)},${renderField(mapping.contributor)}`;
+      // Append metadata
+      for ( const header of metadataHeaders ) {
 
-    // Append metadata
-    for ( const header of metadataHeaders ) {
+        csvContent += `,${mapping[header]}`;
 
-      csvContent += `,${mapping[header]}`;
+      }
+
+      csvContent += '\n';
 
     }
 
-    csvContent += '\n';
+    // Write to file
+    fs.writeFileSync(destinationPath, csvContent);
 
-  }
+    console.log('DONE');
 
-  // Write to file
-  fs.writeFileSync(destinationPath, csvContent);
+  });
 
-  console.log('DONE');
-
-});
+})();
 
 interface Mapping {
 
