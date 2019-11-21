@@ -2,7 +2,7 @@
 
 If you have mappings that would extend the existing classification systems in this repository (located in the `mappings` directory) you can add your mappings to the appropriate file by following [contributing to an existing classification system](#contributing-to-an-existing-classification-system) guidelines. For adding mappings to a classification system that doesn't already exist in this repository, please follow [contributing to a new classification system](#contributing-to-a-new-classification-system).
 
-# Contributing To An Existing Classification System
+## Contributing To An Existing Classification System
 
 In order to add your mappings to an existing classification system, please follow these steps:
   1. Fork this repository
@@ -10,7 +10,7 @@ In order to add your mappings to an existing classification system, please follo
   3. **Append the new mappings to the file**, not leaving any columns out (write your organization/own name in the `contributor` column)
   4. Commit your changes to your fork and **make a pull request** to this repository for a review
 
-# Contributing To A New Classification System
+## Contributing To A New Classification System
 
 If you want to add mappings for a new classification system, please follow these steps:
   1. Fork this repository
@@ -18,9 +18,10 @@ If you want to add mappings for a new classification system, please follow these
   3. **Add your mappings** in the `mappings` directory in lowercase following this format: `name_lang.csv` (the language abbreviation should follow the [ISO 639-1 standard](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes))
   4. Make sure you **use UTF-8** for the mappings file's encoding
   5. At minimum, **provide the following columns**:
-      | literal | code | standard | contributor |
-      |---------|------|----------|-------------|
-      | The mapping literal | The classification code | The standard term which the literal is mapped to (defined by the classification) | Your organization/own name |
+  
+    | literal | code | standard | contributor |
+    |---------|------|----------|-------------|
+    | The mapping literal | The classification code | The standard term which the literal is mapped to (defined by the classification) | Your organization/own name |
   6. If any other columns should be included (e.g. Province column in AMCO is included to eliminate ambiguity) include them after the `contributor` column (since this matter is subjective, we'll give you a feedback in the pull request when we review your mappings file)
   7. Finally, commit your changes to your fork and **make a pull request** to this repository for a review
 
