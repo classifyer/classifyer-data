@@ -8,7 +8,8 @@ In order to add your mappings to an existing classification system, please follo
   1. Fork this repository
   2. In your fork, locate the mappings file for the classification system you want to contribute to inside `mappings` directory (e.g. AMCO in Dutch is `amco_nl.csv`), if the classification system is not listed or is listed in other languages, please follow [contributing to a new classification system](#contributing-to-a-new-classification-system)
   3. **Append the new mappings to the file**, not leaving any columns out (write your organization/own name in the `contributor` column)
-  4. Commit your changes to your fork and **make a pull request** to this repository for a review
+  4. If this is your first contribution, add your organization/project/own name to the list of contributors in `contributors.md` file to be included in the platform's [about page](https://classifyer.app/about/team)
+  5. Commit your changes to your fork and **make a pull request** to this repository for a review
 
 ## Contributing To A New Classification System
 
@@ -23,7 +24,8 @@ If you want to add mappings for a new classification system, please follow these
       |---------|------|----------|-------------|
       | The mapping literal | The classification code | The standard term which the literal is mapped to (defined by the classification) | Your organization/own name |
   6. If any other columns should be included (e.g. Province column in AMCO is included to eliminate ambiguity) include them after the `contributor` column (since this matter is subjective, we'll give you a feedback in the pull request when we review your mappings file)
-  7. Finally, commit your changes to your fork and **make a pull request** to this repository for a review
+  7. If this is your first contribution, add your organization/project/own name to the list of contributors in `contributors.md` file to be included in the platform's [about page](https://classifyer.app/about/team)
+  8. Finally, commit your changes to your fork and **make a pull request** to this repository for a review
 
 # What Happens After
 

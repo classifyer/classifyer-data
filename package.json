@@ -8,7 +8,8 @@
     "build": "ts-node ./scripts/build.ts",
     "post-process": "ts-node ./scripts/post-process.ts",
     "merge": "ts-node ./scripts/merge.ts",
-    "translate": "ts-node ./scripts/translate.ts"
+    "translate": "ts-node ./scripts/translate.ts",
+    "update-contributors": "ts-node ./scripts/update-contributors.ts"
   },
   "repository": {
     "type": "git",
