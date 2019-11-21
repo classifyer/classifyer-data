@@ -18,10 +18,10 @@ If you want to add mappings for a new classification system, please follow these
   3. **Add your mappings** in the `mappings` directory in lowercase following this format: `name_lang.csv` (the language abbreviation should follow the [ISO 639-1 standard](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes))
   4. Make sure you **use UTF-8** for the mappings file's encoding
   5. At minimum, **provide the following columns**:
-  
-    | literal | code | standard | contributor |
-    |---------|------|----------|-------------|
-    | The mapping literal | The classification code | The standard term which the literal is mapped to (defined by the classification) | Your organization/own name |
+
+      | literal | code | standard | contributor |
+      |---------|------|----------|-------------|
+      | The mapping literal | The classification code | The standard term which the literal is mapped to (defined by the classification) | Your organization/own name |
   6. If any other columns should be included (e.g. Province column in AMCO is included to eliminate ambiguity) include them after the `contributor` column (since this matter is subjective, we'll give you a feedback in the pull request when we review your mappings file)
   7. Finally, commit your changes to your fork and **make a pull request** to this repository for a review
 
