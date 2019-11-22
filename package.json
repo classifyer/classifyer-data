@@ -10,7 +10,8 @@
     "merge": "ts-node ./scripts/merge.ts",
     "translate": "ts-node ./scripts/translate.ts",
     "update-contributors": "ts-node ./scripts/update-contributors.ts",
-    "update-description": "ts-node ./scripts/update-description.ts"
+    "update-description": "ts-node ./scripts/update-description.ts",
+    "change-order": "ts-node ./scripts/change-order.ts"
   },
   "repository": {
     "type": "git",
