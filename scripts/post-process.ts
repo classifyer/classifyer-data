@@ -45,8 +45,8 @@ import ask from './ask';
       // Get hash
       const hash = `${row.literal}:${row.code.trim()}`;
 
-      // Delete duplicate
-      if ( hashTable[hash] ) {
+      // Delete duplicate (or empty literals)
+      if ( hashTable[hash] || ! row.literal ) {
 
         if ( verbose ) console.log(hash);
 
