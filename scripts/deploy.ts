@@ -10,7 +10,7 @@
  * @param commitId The commit ID where the file was generated
  * @param category The category in lowercase
  * @param classificationName The classification name
- * @param classificationLanguage The mappings language (two letters standard)
+ * @param mappingsLanguage The mappings language (two letters standard)
  */
 
 import admin from 'firebase-admin';
@@ -48,7 +48,7 @@ let fileId: string = '', categoryId: string = '';
   const commitId = (await ask('Commit ID:', false)).trim();
   const category = (await ask('Category:', false)).trim().toLowerCase();
   const classificationName = (await ask('Classification name:', false)).trim().toLowerCase();
-  const classificationLanguage = (await ask('Classification language:', false)).trim().toLowerCase();
+  const mappingsLanguage = (await ask('Mappings language:', false)).trim().toLowerCase();
 
   console.log('');
 
@@ -58,7 +58,7 @@ let fileId: string = '', categoryId: string = '';
   if ( commitId ) console.log(chalk.bold.greenBright('Commit ID:              '), commitId);
   if ( category ) console.log(chalk.bold.greenBright('Category:               '), category);
   if ( classificationName ) console.log(chalk.bold.greenBright('Classification Name:    '), classificationName);
-  if ( classificationLanguage ) console.log(chalk.bold.greenBright('Classification Language:'), classificationLanguage);
+  if ( mappingsLanguage ) console.log(chalk.bold.greenBright('Mappings Language:      '), mappingsLanguage);
 
   console.log('');
 
@@ -83,7 +83,7 @@ let fileId: string = '', categoryId: string = '';
     const fileSnapshot = await admin.firestore().collection('files').where('basename', '==', path.basename(mappingFilename, '.json.gz')).get();
 
     // If file is new
-    if ( fileSnapshot.empty && (! commitId || ! category || ! classificationName || ! classificationLanguage) ) {
+    if ( fileSnapshot.empty && (! commitId || ! category || ! classificationName || ! mappingsLanguage) ) {
 
       console.log(chalk.bold.redBright('Missing required fields for new files!'));
       process.exit(0);
@@ -198,7 +198,7 @@ let fileId: string = '', categoryId: string = '';
     // Add/update dictionary document
     const dictionarySnapshot = await admin.firestore().collection('dictionaries')
     .where('name', '==', classificationName)
-    .where('language', '==', classificationLanguage)
+    .where('language', '==', mappingsLanguage)
     .get();
 
     // Add dictionary document
@@ -211,7 +211,7 @@ let fileId: string = '', categoryId: string = '';
         mappingFileId: fileId,
         categoryId: categoryId,
         description: renderedDescription,
-        language: classificationLanguage
+        language: mappingsLanguage
       });
 
       console.log(chalk.bold.magenta('Dictionary document created'));
@@ -229,7 +229,7 @@ let fileId: string = '', categoryId: string = '';
         mappingFileId: fileId,
         categoryId: categoryId,
         description: renderedDescription,
-        language: classificationLanguage || doc.get('language')
+        language: mappingsLanguage || doc.get('language')
       });
 
       console.log(chalk.bold.magenta('Dictionary document updated'));
