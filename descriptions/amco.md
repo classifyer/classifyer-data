@@ -1,4 +1,4 @@
-The 'Amsterdam code' is a code of Dutch municipalities that has been developed for historical research and was first published in _“Repertorium van Nederlandse gemeenten 1812-2006”_. AMCO (Amsterdamse Code) is one of the most used classification systems in the Netherlands for harmonize municipalities across time and space. The system is built on the principle of minimum varying codes. In other words, municipalities get fixed codes over time and the system does not alter with changing names, composition or spelling variants (Van der Meer and Boonstra 2006).
+The 'Amsterdam code' is a code of Dutch municipalities that has been developed for historical research and was first published in _“Repertorium van Nederlandse gemeenten 1812-2006”_. AMCO (Amsterdamse Code) is one of the most used classification systems in the Netherlands for harmonizing municipalities across time and space. The system is built on the principle of minimum varying codes. In other words, municipalities get fixed codes over time and the system does not alter with changing names, composition or spelling variants (Van der Meer and Boonstra 2006).
 
 ---
 
