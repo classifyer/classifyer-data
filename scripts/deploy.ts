@@ -45,20 +45,20 @@ let fileId: string = '', categoryId: string = '';
   // Collect the input parameters
   const mappingFilename = path.resolve(__dirname, '..', await ask('Built mappings filename (relative to root):', true, pathExists));
   const descriptionFilename = path.resolve(__dirname, '..', await ask('Description filename (relative to root):', true, pathExists));
-  const commitId = (await ask('Commit ID:', true)).trim();
-  const category = (await ask('Category:', true)).trim().toLowerCase();
-  const classificationName = (await ask('Classification name:', true)).trim().toLowerCase();
-  const classificationLanguage = (await ask('Classification language:', true)).trim().toLowerCase();
+  const commitId = (await ask('Commit ID:', false)).trim();
+  const category = (await ask('Category:', false)).trim().toLowerCase();
+  const classificationName = (await ask('Classification name:', false)).trim().toLowerCase();
+  const classificationLanguage = (await ask('Classification language:', false)).trim().toLowerCase();
 
   console.log('');
 
   // Double check the input
   console.log(chalk.bold.greenBright('Mappings:               '), mappingFilename);
   console.log(chalk.bold.greenBright('Description:            '), descriptionFilename);
-  console.log(chalk.bold.greenBright('Commit ID:              '), commitId);
-  console.log(chalk.bold.greenBright('Category:               '), category);
-  console.log(chalk.bold.greenBright('Classification Name:    '), classificationName);
-  console.log(chalk.bold.greenBright('Classification Language:'), classificationLanguage);
+  if ( commitId ) console.log(chalk.bold.greenBright('Commit ID:              '), commitId);
+  if ( category ) console.log(chalk.bold.greenBright('Category:               '), category);
+  if ( classificationName ) console.log(chalk.bold.greenBright('Classification Name:    '), classificationName);
+  if ( classificationLanguage ) console.log(chalk.bold.greenBright('Classification Language:'), classificationLanguage);
 
   console.log('');
 
@@ -81,6 +81,14 @@ let fileId: string = '', categoryId: string = '';
     let deleteOldVersion: boolean = false;
 
     const fileSnapshot = await admin.firestore().collection('files').where('basename', '==', path.basename(mappingFilename, '.json.gz')).get();
+
+    // If file is new
+    if ( fileSnapshot.empty && (! commitId || ! category || ! classificationName || ! classificationLanguage) ) {
+
+      console.log(chalk.bold.redBright('Missing required fields for new files!'));
+      process.exit(0);
+
+    }
 
     // Add file document
     if ( fileSnapshot.empty ) {
@@ -112,7 +120,7 @@ let fileId: string = '', categoryId: string = '';
 
       await doc.ref.update({
         version: doc.get('version') + 1,
-        commitId: commitId
+        commitId: commitId || doc.get('commitId')
       });
 
       console.log(chalk.bold.magenta('File document updated'));
@@ -149,8 +157,8 @@ let fileId: string = '', categoryId: string = '';
       console.log(chalk.bold.magenta('Category document created'));
 
     }
-    // Update category document
-    else {
+    // Update category document if needed
+    else if ( category ) {
 
       console.log(chalk.bold.magenta('Updating category document on Firestore...'));
 
@@ -217,11 +225,11 @@ let fileId: string = '', categoryId: string = '';
       const doc = dictionarySnapshot.docs[0];
 
       await doc.ref.update({
-        name: classificationName,
+        name: classificationName || doc.get('name'),
         mappingFileId: fileId,
         categoryId: categoryId,
         description: renderedDescription,
-        language: classificationLanguage
+        language: classificationLanguage || doc.get('language')
       });
 
       console.log(chalk.bold.magenta('Dictionary document updated'));

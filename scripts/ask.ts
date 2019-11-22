@@ -26,17 +26,21 @@ export default function ask(question: string, required?: boolean, validator?: (i
 
     rl.on('line', async answer => {
 
+      // Prompt the question again if answer was empty and required and there is no validator provided
       if ( required && ! validator && (! answer || ! answer.trim()) ) return rl.prompt();
 
+      // If validator is provided
       if ( validator ) {
 
         let result: Error|boolean;
 
         try {
 
+          // Run the validator
           result = await validator(answer);
 
         }
+        // Validator threw an exception
         catch (error) {
 
           error.message = `VALIDATOR_EXCEPTION: ${error.message}`;
@@ -46,15 +50,18 @@ export default function ask(question: string, required?: boolean, validator?: (i
 
         }
 
+        // If result is false or Error
         if ( ! result || result instanceof Error ) {
 
           console.log(chalk.bold.red(result instanceof Error ? result.message : DEF_ERR_MSG));
 
+          // If required, prompt again
           if ( required ) {
 
             return rl.prompt();
 
           }
+          // Otherwise, reject the promise
           else {
 
             reject(new Error(`VALIDATION_FAILED: ${result instanceof Error ? result.message : DEF_ERR_MSG}`));
