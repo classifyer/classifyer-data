@@ -6,7 +6,8 @@
  * The classification.csv headers should be: standard,code (any other columns will be considered as metadata).
  * The mappings.csv headers should be: literal,code,contributor.
  *
- * @param targetDir The directory which contains mappings.csv and classification.csv
+ * @param mappingPath The path to the mapping file
+ * @param classificationPath The path to classification file
  * @param destination The path to the destination where the merged file should be saved.
  */
 import path from 'path';
@@ -17,24 +18,18 @@ import ask from './ask';
 (async () => {
 
   // Relative path validator
-  const validDir = (filename: string) => {
+  const pathExists = (filename: string) => {
 
     if ( ! filename || ! fs.existsSync(path.resolve(__dirname, '..', filename)) )
-      return new Error('Directory not found! Please enter a valid path relative to the project root.');
-
-    const files = fs.readdirSync(path.resolve(__dirname, '..', filename));
-
-    if ( ! files.includes('mappings.csv') || ! files.includes('classification.csv') )
-      return new Error('Directory does not contain the necessary files!');
+      return new Error('File not found! Please enter a valid path relative to the project root.');
 
     return true;
 
   };
 
-  const targetDir = path.resolve(__dirname, '..', await ask('Path to directory containing classification.csv and mappings.csv (relative to root):', true, validDir));
+  const targetMappings = path.resolve(__dirname, '..', await ask('CSV mappings filename (relative to root):', true, pathExists));
+  const targetClassification = path.resolve(__dirname, '..', await ask('CSV classification filename (relative to root):', true, pathExists));
   const destination = path.resolve(__dirname, '..', await ask('Destination filename (relative to root):', true));
-  const targetClassification = path.resolve(targetDir, 'classification.csv');
-  const targetMappings = path.resolve(targetDir, 'mappings.csv');
   let classification: any[], mappings: any[];
 
   function renderField(value: string): string {

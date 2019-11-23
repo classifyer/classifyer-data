@@ -43,7 +43,7 @@ const pathExists = (filename: string) => {
 
       delete row.literal;
 
-      if ( ! data[key] ) data[key] = [];
+      if ( ! data.hasOwnProperty(key) ) data[key] = [];
 
       data[key].push(row);
 
