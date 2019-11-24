@@ -35,17 +35,32 @@ const pathExists = (filename: string) => {
   .then(json => {
 
     // Transform array to key-value pair
-    let data = {};
+    let dictionary = { data: {}, meta: { contributors: [], length: 0 } };
 
     for ( const row of json ) {
 
       const key = row.literal.trim().toLowerCase();
+      const contributor = row.contributor.trim();
 
       delete row.literal;
 
-      if ( ! data.hasOwnProperty(key) ) data[key] = [];
+      // Index contributor
+      let contribIndex = dictionary.meta.contributors.indexOf(contributor);
 
-      data[key].push(row);
+      if ( contribIndex > -1 ) row.contributor = contribIndex;
+      else {
+
+        dictionary.meta.contributors.push(contributor);
+        row.contributor = dictionary.meta.contributors.length - 1;
+
+      }
+
+      if ( ! dictionary.data.hasOwnProperty(key) ) dictionary.data[key] = [];
+
+      dictionary.data[key].push(row);
+
+      // Update length
+      dictionary.meta.length++;
 
     }
 
@@ -68,7 +83,7 @@ const pathExists = (filename: string) => {
     .on('finish', () => console.log('DONE'))
     .on('error', console.log);
 
-    readStream.push(JSON.stringify(data));
+    readStream.push(JSON.stringify(dictionary));
     readStream.push(null);
 
   });
