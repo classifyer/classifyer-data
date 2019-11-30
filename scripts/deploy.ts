@@ -44,7 +44,7 @@ let fileId: string = '', categoryId: string = '';
 
   // Collect the input parameters
   const mappingFilename = path.resolve(__dirname, '..', await ask('Built mappings filename (relative to root):', true, pathExists));
-  const descriptionFilename = path.resolve(__dirname, '..', await ask('Description filename (relative to root):', true, pathExists));
+  const descriptionFilename = path.resolve(__dirname, '..', await ask('Description filename (relative to root):', false, pathExists));
   const commitId = (await ask('Commit ID:', false)).trim();
   const category = (await ask('Category:', false)).trim().toLowerCase();
   const classificationName = (await ask('Classification name:', false)).trim().toLowerCase();
@@ -54,7 +54,7 @@ let fileId: string = '', categoryId: string = '';
 
   // Double check the input
   console.log(chalk.bold.greenBright('Mappings:               '), mappingFilename);
-  console.log(chalk.bold.greenBright('Description:            '), descriptionFilename);
+  if ( descriptionFilename ) console.log(chalk.bold.greenBright('Description:            '), descriptionFilename);
   if ( commitId ) console.log(chalk.bold.greenBright('Commit ID:              '), commitId);
   if ( category ) console.log(chalk.bold.greenBright('Category:               '), category);
   if ( classificationName ) console.log(chalk.bold.greenBright('Classification Name:    '), classificationName);
@@ -120,7 +120,7 @@ let fileId: string = '', categoryId: string = '';
 
       await doc.ref.update({
         version: doc.get('version') + 1,
-        commitId: commitId || doc.get('commitId')
+        commitId: commitId.trim() || doc.get('commitId')
       });
 
       console.log(chalk.bold.magenta('File document updated'));
@@ -141,98 +141,112 @@ let fileId: string = '', categoryId: string = '';
     console.log(chalk.bold.magenta('Mappings file uploaded'));
 
     // Add/update the category document
-    const categorySnapshot = await admin.firestore().collection('categories').where('name', '==', category).get();
+    if ( category.trim() ) {
 
-    // Add category document
-    if ( categorySnapshot.empty ) {
+      const categorySnapshot = await admin.firestore().collection('categories').where('name', '==', category).get();
 
-      console.log(chalk.bold.magenta('Adding category document to Firestore...'));
+      // Add category document
+      if ( categorySnapshot.empty ) {
 
-      const doc = await admin.firestore().collection('categories').add({
-        name: category
-      });
+        console.log(chalk.bold.magenta('Adding category document to Firestore...'));
 
-      categoryId = doc.id;
+        const doc = await admin.firestore().collection('categories').add({
+          name: category
+        });
 
-      console.log(chalk.bold.magenta('Category document created'));
+        categoryId = doc.id;
 
-    }
-    // Update category document if needed
-    else if ( category ) {
+        console.log(chalk.bold.magenta('Category document created'));
 
-      console.log(chalk.bold.magenta('Updating category document on Firestore...'));
+      }
+      // Update category document if needed
+      else if ( category ) {
 
-      const doc = categorySnapshot.docs[0];
+        console.log(chalk.bold.magenta('Updating category document on Firestore...'));
 
-      categoryId = doc.id;
+        const doc = categorySnapshot.docs[0];
 
-      await doc.ref.update({
-        name: category
-      });
+        categoryId = doc.id;
 
-      console.log(chalk.bold.magenta('Category document updated'));
+        await doc.ref.update({
+          name: category
+        });
+
+        console.log(chalk.bold.magenta('Category document updated'));
+
+      }
 
     }
 
     // Read the description
-    console.log(chalk.bold.magenta('Loading the description file...'));
+    let renderedDescription: string = null;
 
-    const descriptionContent: string = fs.readFileSync(descriptionFilename, { encoding: 'utf8' });
+    if ( descriptionFilename ) {
 
-    // Configure Showdown
-    showdown
-    .setOption('strikethrough', true)
-    .setOption('tables', true)
-    .setOption('tasklists', true)
-    .setOption('disableForced4SpacesIndentedSublists', true)
-    .setOption('simpleLineBreaks', true)
-    .setOption('openLinksInNewWindow', true)
-    .setOption('splitAdjacentBlockquotes', true);
+      console.log(chalk.bold.magenta('Loading the description file...'));
 
-    // Render markdown to HTML
-    console.log(chalk.bold.magenta('Rendering the description file...'));
+      const descriptionContent: string = fs.readFileSync(descriptionFilename, { encoding: 'utf8' });
 
-    const converter = new showdown.Converter();
-    const renderedDescription = converter.makeHtml(descriptionContent);
+      // Configure Showdown
+      showdown
+      .setOption('strikethrough', true)
+      .setOption('tables', true)
+      .setOption('tasklists', true)
+      .setOption('disableForced4SpacesIndentedSublists', true)
+      .setOption('simpleLineBreaks', true)
+      .setOption('openLinksInNewWindow', true)
+      .setOption('splitAdjacentBlockquotes', true);
 
-    // Add/update dictionary document
-    const dictionarySnapshot = await admin.firestore().collection('dictionaries')
-    .where('name', '==', classificationName)
-    .where('language', '==', mappingsLanguage)
-    .get();
+      // Render markdown to HTML
+      console.log(chalk.bold.magenta('Rendering the description file...'));
 
-    // Add dictionary document
-    if ( dictionarySnapshot.empty ) {
-
-      console.log(chalk.bold.magenta('Adding dictionary document to Firestore...'));
-
-      await admin.firestore().collection('dictionaries').add({
-        name: classificationName,
-        mappingFileId: fileId,
-        categoryId: categoryId,
-        description: renderedDescription,
-        language: mappingsLanguage
-      });
-
-      console.log(chalk.bold.magenta('Dictionary document created'));
+      const converter = new showdown.Converter();
+      renderedDescription = converter.makeHtml(descriptionContent);
 
     }
-    // Update dictionary document
-    else {
 
-      console.log(chalk.bold.magenta('Updating dictionary document on Firestore...'));
+    // Add/update dictionary document
+    if ( classificationName.trim() && mappingsLanguage.trim() ) {
 
-      const doc = dictionarySnapshot.docs[0];
+      const dictionarySnapshot = await admin.firestore().collection('dictionaries')
+      .where('name', '==', classificationName)
+      .where('language', '==', mappingsLanguage)
+      .get();
 
-      await doc.ref.update({
-        name: classificationName || doc.get('name'),
-        mappingFileId: fileId,
-        categoryId: categoryId,
-        description: renderedDescription,
-        language: mappingsLanguage || doc.get('language')
-      });
+      // Add dictionary document
+      if ( dictionarySnapshot.empty ) {
 
-      console.log(chalk.bold.magenta('Dictionary document updated'));
+        console.log(chalk.bold.magenta('Adding dictionary document to Firestore...'));
+
+        await admin.firestore().collection('dictionaries').add({
+          name: classificationName,
+          mappingFileId: fileId,
+          categoryId: categoryId,
+          description: renderedDescription,
+          language: mappingsLanguage
+        });
+
+        console.log(chalk.bold.magenta('Dictionary document created'));
+
+      }
+      // Update dictionary document
+      else {
+
+        console.log(chalk.bold.magenta('Updating dictionary document on Firestore...'));
+
+        const doc = dictionarySnapshot.docs[0];
+
+        await doc.ref.update({
+          name: classificationName || doc.get('name'),
+          mappingFileId: fileId,
+          categoryId: categoryId,
+          description: renderedDescription || doc.get('description'),
+          language: mappingsLanguage || doc.get('language')
+        });
+
+        console.log(chalk.bold.magenta('Dictionary document updated'));
+
+      }
 
     }
 
