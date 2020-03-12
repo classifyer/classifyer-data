@@ -2,3 +2,4 @@
 - [CEDAR Project](https://github.com/CEDAR-project) (<https://doi.org/10.17026/dans-zms-h2s6>)
 - Ashkan Ashkpour, [LICR](http://licr.io) (<https://hdl.handle.net/10622/MHJWRZ>)
 - Pujades Mora, Joana Maria; Valls, Miquel, 2017, ["Barcelona Historical Marriage Database"](https://hdl.handle.net/10622/SDZPFE), IISH
+- GETTY AAT, [Art & Architecture Thesaurus](http://www.getty.edu/research/tools/vocabularies/aat/), [Getty Research Institute](http://www.getty.edu/)
