@@ -4,14 +4,14 @@
   "description": "Classifyer.app mappings",
   "main": "index.js",
   "scripts": {
-    "deploy": "ts-node ./scripts/deploy.ts",
-    "build": "ts-node ./scripts/build.ts",
-    "post-process": "ts-node ./scripts/post-process.ts",
-    "merge": "ts-node ./scripts/merge.ts",
-    "translate": "ts-node ./scripts/translate.ts",
-    "update-contributors": "ts-node ./scripts/update-contributors.ts",
-    "update-description": "ts-node ./scripts/update-description.ts",
-    "change-order": "ts-node ./scripts/change-order.ts",
+    "deploy": "./node_modules/ts-node/dist/bin.js ./scripts/deploy.ts",
+    "build": "./node_modules/ts-node/dist/bin.js ./scripts/build.ts",
+    "post-process": "./node_modules/ts-node/dist/bin.js ./scripts/post-process.ts",
+    "merge": "./node_modules/ts-node/dist/bin.js ./scripts/merge.ts",
+    "translate": "./node_modules/ts-node/dist/bin.js ./scripts/translate.ts",
+    "update-contributors": "./node_modules/ts-node/dist/bin.js ./scripts/update-contributors.ts",
+    "update-description": "./node_modules/ts-node/dist/bin.js ./scripts/update-description.ts",
+    "change-order": "./node_modules/ts-node/dist/bin.js ./scripts/change-order.ts",
     "last-commit-id": "git rev-parse HEAD"
   },
   "repository": {
@@ -30,15 +30,17 @@
   "dependencies": {
     "chalk": "^2.4.2",
     "csvtojson": "^2.0.10",
+    "firebase-admin": "^8.10.0",
     "json2csv": "^4.5.4",
     "lodash": "^4.17.15",
-    "showdown": "^1.9.1"
+    "showdown": "^1.9.1",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.3"
   },
   "devDependencies": {
     "@types/json2csv": "^4.5.0",
     "@types/lodash": "^4.14.146",
     "@types/node": "^12.12.7",
-    "@types/showdown": "^1.9.3",
-    "firebase-admin": "^8.7.0"
+    "@types/showdown": "^1.9.3"
   }
 }
