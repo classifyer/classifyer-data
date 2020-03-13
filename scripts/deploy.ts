@@ -19,6 +19,7 @@ import chalk from 'chalk';
 import path from 'path';
 import showdown from 'showdown';
 import fs from 'fs';
+import zlib from 'zlib';
 import ask from './ask';
 
 let fileId: string = '', categoryId: string = '';
@@ -205,6 +206,9 @@ let fileId: string = '', categoryId: string = '';
 
     }
 
+    // Read built mappings package'e metadata
+    const metadata = JSON.parse(zlib.unzipSync(fs.readFileSync(mappingFilename)).toString()).meta;
+
     // Add/update dictionary document
     if ( classificationName.trim() && mappingsLanguage.trim() ) {
 
@@ -223,7 +227,8 @@ let fileId: string = '', categoryId: string = '';
           mappingFileId: fileId,
           categoryId: categoryId,
           description: renderedDescription,
-          language: mappingsLanguage
+          language: mappingsLanguage,
+          length: metadata.length
         });
 
         console.log(chalk.bold.magenta('Dictionary document created'));
@@ -241,7 +246,8 @@ let fileId: string = '', categoryId: string = '';
           mappingFileId: fileId,
           categoryId: categoryId,
           description: renderedDescription || doc.get('description'),
-          language: mappingsLanguage || doc.get('language')
+          language: mappingsLanguage || doc.get('language'),
+          length: metadata.length
         });
 
         console.log(chalk.bold.magenta('Dictionary document updated'));

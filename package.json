@@ -12,6 +12,7 @@
     "update-contributors": "./node_modules/ts-node/dist/bin.js ./scripts/update-contributors.ts",
     "update-description": "./node_modules/ts-node/dist/bin.js ./scripts/update-description.ts",
     "change-order": "./node_modules/ts-node/dist/bin.js ./scripts/change-order.ts",
+    "display-length": "./node_modules/ts-node/dist/bin.js ./scripts/display-length.ts",
     "last-commit-id": "git rev-parse HEAD"
   },
   "repository": {
