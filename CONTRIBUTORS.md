@@ -1,5 +1,6 @@
 - [Historical Sample of the Netherlands](https://iisg.amsterdam/en/hsn) (<https://hdl.handle.net/10622/MUZMAL>)
-- [CEDAR Project](https://github.com/CEDAR-project) (<https://doi.org/10.17026/dans-zms-h2s6>)
+- [CEDAR Project Netherlands](https://github.com/CEDAR-project) (<https://doi.org/10.17026/dans-zms-h2s6>)
 - Ashkan Ashkpour, [LICR](http://licr.io) (<https://hdl.handle.net/10622/MHJWRZ>)
-- Pujades Mora, Joana Maria; Valls, Miquel, 2017, ["Barcelona Historical Marriage Database"](https://hdl.handle.net/10622/SDZPFE), IISH
+- Pujades Mora, Joana Maria; Valls, Miquel, 2017, ["Barcelona Historical Marriage Database"](https://hdl.handle.net/10622/SDZPFE)
 - GETTY AAT, [Art & Architecture Thesaurus](http://www.getty.edu/research/tools/vocabularies/aat/), [Getty Research Institute](http://www.getty.edu/)
+- Edvinsson, Sören; Westberg, Annika, 2016, ["Swedish CEDAR Project"](https://hdl.handle.net/10622/KNGX6B)
