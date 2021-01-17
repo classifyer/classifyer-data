@@ -28,16 +28,36 @@ const pathExists = (filename: string) => {
 
 (async () => {
 
+  let possibleCorruption: boolean = false;
+  const corruptionIdentifiers: string[] = ['�'];
   const target = path.resolve(__dirname, '..', await ask('CSV mappings filename (relative to root):', true, pathExists));
 
   csv()
   .fromFile(target, { encoding: 'utf8' })
-  .then(json => {
+  .then(async json => {
 
     // Transform array to key-value pair
     let dictionary = { data: {}, meta: { contributors: [], length: 0 } };
 
     for ( const row of json ) {
+
+      // Check for possible corruption
+      if ( ! possibleCorruption ) {
+
+        const serialized = JSON.stringify(row);
+
+        for ( const identifier of corruptionIdentifiers ) {
+
+          if ( serialized.includes(identifier) ) {
+
+            possibleCorruption = true;
+            break;
+
+          }
+
+        }
+
+      }
 
       const key = row.literal.trim().toLowerCase();
       const contributor = row.contributor.trim();
@@ -63,6 +83,15 @@ const pathExists = (filename: string) => {
       dictionary.meta.length++;
 
     }
+
+    // Prompt corruption warning if detected
+    if (
+      possibleCorruption &&
+      (await ask('Mappings file is possibly corrupted! This can occur due to invalid encoding (must use UTF-8).' +
+      '\nDo you want to continue with the build? (y/n)', true,
+      input => ['y', 'n', 'yes', 'no'].includes(input.toLowerCase()))) === 'n'
+    )
+      process.exit();
 
     // If dist directory doesn't exist
     if ( ! fs.existsSync(path.resolve(__dirname, '..', 'dist')) ) {
